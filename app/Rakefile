@@ -1,0 +1,23 @@
+require 'rspec/core/rake_task'
+require './db/create'
+
+namespace :spec do
+
+  RSpec::Core::RakeTask.new(:unit) do |t|
+    t.pattern = 'spec/**/*_spec.rb'
+  end
+
+end
+
+task :spec do
+  ENV['test'] = 'true'
+  tag = "--tag #{ENV['tag']}" if ENV['tag']
+  raise 'Failed' unless system "bundle exec rspec #{tag}"
+end
+
+task :default => 'spec'
+
+task :dbcreate do
+  args[:recreate] = true if ENV['recreate']
+  Create.run(args)
+end
