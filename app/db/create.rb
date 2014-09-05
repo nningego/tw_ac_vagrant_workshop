@@ -1,11 +1,9 @@
 require 'mysql'
 module Create
-  def self.run(args = {})
-    # my = Mysql.connect('localhost', 'root', 'thought', 'minion', '3306', '/var/run/mysqld/mysqld.sock')
-    # p my
+  def self.run
+    my = Mysql.connect('127.0.0.1', 'root', 'thought', 'miniondb')
 
-    # stmt = my.prepare('CREATE TABLE IF NOT EXISTS minions (name varchar)')
-    # stmt.execute
+    my.query('CREATE TABLE IF NOT EXISTS minions(id int AUTO_INCREMENT, name varchar(40), PRIMARY KEY (id))')
 
   end
 

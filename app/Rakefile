@@ -18,6 +18,5 @@ end
 task :default => 'spec'
 
 task :dbcreate do
-  args[:recreate] = true if ENV['recreate']
-  Create.run(args)
+  Create.run
 end

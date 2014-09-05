@@ -1,9 +1,10 @@
 require 'sinatra'
+require 'dbclient'
 # Listen on all interfaces in the development environment
 set :bind, '0.0.0.0'
 
-class OrdersApp
-  @client = Mysql.connect('hostname', 'username', 'password', 'dbname', '3306')
+class MinionApp
+  @client = DBClient.client
 
   get '/' do
     'Hello World!'

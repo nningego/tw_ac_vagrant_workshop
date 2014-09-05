@@ -9,7 +9,8 @@ $vagrant ssh
 $cd /vagrant/app
 $bundle install
 $rake dbcreate
-$rake spec
+$rake spec:persistance
+$rake spec:functional
 $ruby run_app.rb
 ````
 

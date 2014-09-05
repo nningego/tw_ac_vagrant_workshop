@@ -1,6 +1,17 @@
 require 'bundler'
 require 'pry'
-require_relative '../db/create'
+
+paths = [
+    File.expand_path('../../lib', __FILE__),
+    File.expand_path('../../db', __FILE__),
+]
+
+paths.each do |path|
+  ($:.unshift path) unless ($:.include? path)
+end
+
+require 'dbclient'
+require 'create'
 
 RSpec.configure do |config|
   # Spec Filtering
