@@ -4,8 +4,7 @@ describe DBClient do
 
   before do
     @client = DBClient.new
-    delete('carl')
-    delete('jill')
+    truncate
   end
 
   it 'should show all minions' do
@@ -20,12 +19,13 @@ describe DBClient do
     @client.insert('carl')
 
     result = @client.show_all
+    expect(result[0]).to include('carl')
     expect(result.count).to eq(1)
 
   end
 
-  def delete(name)
-    stmt = @client.client.prepare("delete from minions where name='#{name}'")
+  def truncate
+    stmt = @client.client.prepare('truncate table minions')
     stmt.execute
     stmt.close
   end
