@@ -14,13 +14,11 @@ require 'dbclient'
 require 'create'
 
 RSpec.configure do |config|
-  # Spec Filtering
-  config.filter_run focus: true
-  config.run_all_when_everything_filtered = true
 
   # Output
   config.tty = true
   config.formatter = :documentation
+  config.color_enabled = true
 
 end
 

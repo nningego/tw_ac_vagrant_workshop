@@ -1,3 +1,5 @@
+require 'mysql'
+
 class DBClient
   attr :client
 
@@ -8,9 +10,22 @@ class DBClient
   def insert(name)
     stmt = @client.prepare("insert into minions(name) values ('#{name}')")
     stmt.execute
+    stmt.close
   end
 
   def show_all
-    @client.query('select * from minions')
+    stmt = @client.prepare('select * from minions order by name')
+    stmt.execute
+    result = fetch_results(stmt)
+    stmt.close
+    result
+  end
+
+  def fetch_results(stmt)
+    rows = []
+    while row = stmt.fetch do
+      rows << row
+    end
+    rows
   end
 end
