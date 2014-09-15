@@ -4,9 +4,13 @@ lib_path = File.expand_path('../', __FILE__)
 
 require 'sinatra'
 require 'dbclient'
+require 'json'
 # Listen on all interfaces in the development environment
 set :bind, '0.0.0.0'
 
+before do
+  content_type :json
+end
 
 get '/' do
   'Hello World!'
@@ -14,7 +18,9 @@ end
 
 get '/show/minions' do
   @client = DBClient.new
-  @client.show_all
+
+  all = @client.show_all
+  all.to_json
 end
 
 post '/minion/:name' do
