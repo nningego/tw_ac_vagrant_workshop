@@ -10,24 +10,28 @@ describe DBClient do
   it 'should show all minions' do
     insert_seed
     result = @client.show_all
+    expect(result.count).to eq(2)
     expect(result[0]).to include('carl')
     expect(result[1]).to include('jill')
   end
 
-  it 'should insert minions' do
+  it 'should insert minion' do
 
     @client.insert('carl')
 
     result = @client.show_all
     expect(result[0]).to include('carl')
     expect(result.count).to eq(1)
-
   end
 
-  def truncate
-    stmt = @client.client.prepare('truncate table minions')
-    stmt.execute
-    stmt.close
+  it 'should delete minion' do
+    insert_seed
+    @client.delete('carl')
+
+    result = @client.show_all
+    expect(result.count).to eq(1)
+    expect(result[0]).to include('jill')
+
   end
 
   def insert_seed
@@ -37,5 +41,17 @@ describe DBClient do
     stmt.execute
     stmt.close
   end
+
+  after(:all) do
+    @client = DBClient.new
+    truncate
+  end
+
+  def truncate
+    stmt = @client.client.prepare('truncate table minions')
+    stmt.execute
+    stmt.close
+  end
+
 
 end

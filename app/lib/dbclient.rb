@@ -13,6 +13,12 @@ class DBClient
     stmt.close
   end
 
+  def delete(name)
+    stmt = @client.prepare("delete from minions where name='#{name}'")
+    stmt.execute
+    stmt.close
+  end
+
   def show_all
     stmt = @client.prepare('select * from minions order by name')
     stmt.execute

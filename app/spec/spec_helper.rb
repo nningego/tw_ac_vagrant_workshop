@@ -18,8 +18,7 @@ RSpec.configure do |config|
   # Output
   config.tty = true
   config.formatter = :documentation
-  config.color_enabled = true
-
+  config.color= true
 end
 
 

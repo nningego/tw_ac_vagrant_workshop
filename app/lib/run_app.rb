@@ -27,5 +27,12 @@ post '/minion/:name' do
   name = params[:name]
   @client = DBClient.new
   @client.insert(name)
-  p "inserted #{name}"
+  "inserted #{name}"
+end
+
+delete '/minion/:name' do
+  name = params[:name]
+  @client = DBClient.new
+  @client.delete(name)
+  "deleted #{name}"
 end
