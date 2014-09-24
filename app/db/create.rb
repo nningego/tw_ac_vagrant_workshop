@@ -5,6 +5,7 @@ module Create
 
     my.query('CREATE TABLE IF NOT EXISTS minions(id int AUTO_INCREMENT, name varchar(40), PRIMARY KEY (id))')
 
+    p 'TABLE minions CREATED !'
   end
 
 end

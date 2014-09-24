@@ -13,7 +13,7 @@ before do
 end
 
 get '/' do
-  'Hello World!'
+  'Hello Minions !'
 end
 
 get '/show/minions' do

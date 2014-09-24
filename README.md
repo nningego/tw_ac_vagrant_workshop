@@ -9,10 +9,15 @@ $vagrant ssh
 $cd /vagrant/app
 $bundle install
 $rake dbcreate
-$rake spec:persistance
-$rake spec:functional
-$ruby run_app.rb
+$rspec spec
+$ruby lib/run_app.rb
+
+#go to functional tests
+$rspec spec
+
 ````
 
 ### 3) local machine
+run db tests
+run persistance tests
 open browser to http://localhost:4567
