@@ -19,5 +19,5 @@ $rspec spec
 
 ### 3) local machine
 run db tests
-run persistance tests
+run functional tests
 open browser to http://localhost:4567
